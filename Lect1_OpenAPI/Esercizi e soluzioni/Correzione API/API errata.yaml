@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   version: "1.0.0"
   title: "Esercizio giochi"
-  desription: "API gestione piattaforma di giochi"
+  desription: "API gestione piattaforma di giochi" // description con c !!
   
 paths:
   /giochi:
@@ -24,7 +24,7 @@ paths:
         200:
           description: "Successo"
           schema:
-            type: "array
+            type: "array"                    // Mancava il secondo"
             items:
               $ref: #/definitions/Gioco"
         400:
@@ -33,7 +33,7 @@ paths:
   /giochi/{idGioco}:
     put:
       summary: "Modifica il numero minimo e il numero massimo di giocatori in un gioco"
-      operationId: "getGameByCategory"
+      operationId: "getGameByCategory" // Not the correct method to apply
       parameters:
         - in: "path"
           name: "idGioco"
@@ -54,10 +54,11 @@ paths:
         400:
           description: "Input non valido"
           
-  /giochi:
+  /giochi: //Non poretebbero esserci due /giochi (riga 8)
     post:
       summary: "Aggiunge un insieme di giochi"
       operationId: "addGames"
+      // Manca parameters
         - in: "body"
           name: "nuovo gioco"
           description: "nuovo gioco da aggiungere"
