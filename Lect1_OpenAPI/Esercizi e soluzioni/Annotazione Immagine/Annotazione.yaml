@@ -1,1 +1,109 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: 'Esercizio Annotazione'
+  description: 'API per gestire e categorizzare le immagini'
+host: annotazione.swagger.io
+schemes:
+  - http
+  - https
 
+paths:
+  /immagini/{Categoria}:
+    get:
+      summary: 'Ritorna tutte le immagini della categoria specificata'
+      operationId: 'ImagesWCategoria'
+      parameters:
+        - name: Categoria
+          in: path
+          type: string
+          required: true
+      responses:
+        200:
+          description: 'successo'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Immagine'
+        400:
+          description: 'Errore'
+
+  /immagini/Tags/{imageId}:
+    get:
+      summary: 'Ritorna tutte le tag della immagine specificata'
+      operationId: 'TagsOfImages'
+      parameters:
+        - name: imageId
+          in: path
+          type: string
+          required: true
+      responses:
+        200:
+          description: 'successo'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Tag'
+        400:
+          description: 'Errore'
+
+    put:
+      summary: 'A un immagine esistente aggiunge un tag'
+      operationId: 'AddTag'
+      parameters:
+        - name: imageId
+          in: path
+          type: string
+          required: true
+        - name: tag
+          in: body
+          description: Tag aggiornato
+          required: true
+          schema:
+            $ref: "#/definitions/Tag"
+      responses:
+        200:
+          description: 'Operazione successo'
+        400:
+          description: 'Operazione fail'
+          
+definitions:
+  Immagine:
+    type: object
+    required:
+      - ImageId
+      - Url
+      - Categoria
+      - Tag
+    properties:
+      ImageId:
+        type: string
+        example: Img1
+      Url:
+        type: string
+        example: www.url.com
+      Categoria:
+        type: string
+        enum:
+          - pittura
+          - pubblicita
+          - fotografia
+      Tag:
+        $ref: '#/definitions/Tag'
+  Tag:
+    type: object
+    required:
+      - TagId
+      - TagNome
+      - Valutazione
+    properties:
+      TagId:
+        type: string
+        example: t1
+      TagNome:
+        type: string
+        example: TagName
+      Valutazione:
+        type: integer
+        minimum: 1
+        maximum: 3
