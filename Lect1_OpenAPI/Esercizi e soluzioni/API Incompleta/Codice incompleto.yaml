@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  version: 0.0.1
+  version: 0.0.1 
   title: 'Esercizio Botanica'
   description: 'API per gestire un blog di botanica'
 schemes:
@@ -14,16 +14,16 @@ paths:
       parameters:
         - name: mindata
           in: query
-          description: "minimum data degli articoli"
+          description: "minimum data degli articoli" # Manca il tipologia
         - name: categoria
           in: query
-          description: "Categoria degli articoli"
+          description: "Categoria degli articoli" #Deve ritornare un array di articoli
           type: string
       responses:
         200:
           description: 'successo'
           schema:
-              $ref: '#/definitions/Articolo'
+              $ref: '#/definitions/Articolo' # deve essere def.Errore o non deve esserci proprio
         400:
           description: 'Errore richiesta'
     post:
@@ -38,7 +38,7 @@ paths:
             $ref: '#/definitions/Articolo'
       responses:
         200:
-          description: 'succeso'
+          description: 'succeso' #Manca il caso di errore
   /articoli/{articoloID}/:
     put:
       description: 'aggiornare un articolo'
@@ -49,6 +49,7 @@ paths:
           type: integer
           in: path
           required: true
+          # Dovrei aggiungere un altro parametro articolo (con il contenuto aggiornato)
       responses:
         200:
           description: 'successo - articolo aggiornato'
