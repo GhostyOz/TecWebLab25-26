@@ -1,0 +1,15 @@
+#sec1{
+    background-color:lightgray;
+    text-align: justify;
+}
+a{
+    background-color:crimson;
+    font-size: 150%;
+}
+h1{
+    text-align:center;
+}
+ol{
+    font-style: italic;
+    border: 3px dashed blue
+}
